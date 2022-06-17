@@ -1,5 +1,5 @@
 <div align="center" id="top">
-  <img src="./.github/app.gif" alt="Imc Calculator" />
+  <img src="./.github/screen01.png" alt="Imc Calculator" />
 
   &#xa0;
 
@@ -46,7 +46,7 @@ Describe your project
 
 :heavy_check_mark: Calcula o IMC - Massa corporal com base no peso e altura;
 
-## :rocket: Technologies ##
+## :rocket: Tecnologias ##
 
 Ferramentas e tecnologias usadas neste projeto:
 
