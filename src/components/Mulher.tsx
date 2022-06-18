@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ShowResult } from "./ShowResult";
 
 export function Mulher() {
@@ -8,17 +8,24 @@ export function Mulher() {
   const [campoAltura, setCampoAltura] = useState(false);
   const [campoPeso, setCampoPeso] = useState(false);
 
-  function handleImcCalc() {
+  useEffect(() => {
+    if (Number(altura) > 2.5) {
+      const valor = Number(altura) / 100;
+      setAltura(valor.toString());
+
+      if (!altura || valor > 2.5) {
+        setCampoAltura(true);
+      } else {
+        setCampoAltura(false);
+      }
+    }
+  }, [peso, altura]);
+
+  async function handleImcCalc() {
     if (!peso || Number(peso) > 500) {
       setCampoPeso(true);
     } else {
       setCampoPeso(false);
-    }
-
-    if (!altura || Number(altura) > 2.5) {
-      setCampoAltura(true);
-    } else {
-      setCampoAltura(false);
     }
 
     const alt = Number(altura.replace(",", "."));
