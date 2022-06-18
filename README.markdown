@@ -24,7 +24,7 @@
   <img alt="Github stars" src="https://img.shields.io/github/stars/andrelinos/imc?color=56BEB8" />
 </p>
 
-<hr> -->
+<hr>
 
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0;
