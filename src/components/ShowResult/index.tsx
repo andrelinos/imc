@@ -18,8 +18,6 @@ export function ShowResult({ imc }: Props) {
     }
   }, [imc]);
 
-  console.log(imc);
-
   return (
     <div className="flex w-full flex-col h-12">
       {message && message}

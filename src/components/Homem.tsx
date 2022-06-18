@@ -2,36 +2,39 @@ import { useEffect, useState } from "react";
 import { ShowResult } from "./ShowResult";
 
 export function Homem() {
-  const [peso, setPeso] = useState("");
-  const [altura, setAltura] = useState("");
+  const [peso, setPeso] = useState(0);
+  const [altura, setAltura] = useState(0);
   const [resultado, setResultado] = useState(0);
   const [campoAltura, setCampoAltura] = useState(false);
   const [campoPeso, setCampoPeso] = useState(false);
 
   useEffect(() => {
-    if (Number(altura) > 2.5) {
-      const valor = Number(altura) / 100;
-      setAltura(valor.toString());
+    if (altura > 2.5) {
+      const valor = altura / 100;
 
-      if (!altura || valor > 2.5) {
-        setCampoAltura(true);
+      if (valor > 2.5) {
+        return setCampoAltura(true);
       } else {
+        setAltura(valor);
         setCampoAltura(false);
       }
     }
   }, [peso, altura]);
 
   async function handleImcCalc() {
-    if (!peso || Number(peso) > 500) {
-      setCampoPeso(true);
+    if (!peso || peso > 500) {
+      return setCampoPeso(true);
     } else {
       setCampoPeso(false);
     }
 
-    const alt = Number(altura.replace(",", "."));
-    const pes = Number(peso.replace(",", "."));
+    if (!altura || altura > 250) {
+      return setCampoAltura(true);
+    } else {
+      setCampoAltura(false);
+    }
 
-    const imc = (pes / (alt * alt)).toFixed(2);
+    const imc = (peso / (altura * altura)).toFixed(2);
 
     setResultado(Number(imc));
   }
@@ -46,12 +49,12 @@ export function Homem() {
               className="w-full md:w-52 py-2 px-3 border-[1px] rounded-sm mr-2 required:border-red-500
                       invalid:border-red-500 focus:outline-none relative
                       focus-visible:ring-2 ring-blue-400"
-              placeholder="Ex: 1.65"
-              type="text"
+              placeholder="Ex: 165"
+              type="number"
               name="height"
               id="height"
               required={campoAltura}
-              onChange={(e) => setAltura(e.target.value)}
+              onChange={(e) => setAltura(Number(e.target.value))}
             />
           </div>
           <span className="absolute right-10 text-md text-gray-400 md:w-24">
@@ -68,11 +71,11 @@ export function Homem() {
               invalid:border-red-500 focus:outline-none relative
               focus-visible:ring-2 ring-blue-400"
               placeholder="Ex: 62"
-              type="text"
+              type="number"
               name="weight"
               id="weight"
               required={campoPeso}
-              onChange={(e) => setPeso(e.target.value)}
+              onChange={(e) => setPeso(Number(e.target.value))}
             />
           </div>
           <span className="absolute right-10 text-md text-gray-400 md:w-24">
